@@ -1,6 +1,6 @@
 module Asendia
   class Order
-    include Virtus.model
+    include ::Virtus.model
 
     attribute :created_by,            String
     attribute :created_on,            DateTime
@@ -56,5 +56,13 @@ module Asendia
 
     # Line items
     attribute :purchase_items,        Array[PurchaseItem]
+
+    def save
+      puts to_xml.inspect
+    end
+
+    def to_xml
+      '<xml></xml>'
+    end
   end
 end

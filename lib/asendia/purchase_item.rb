@@ -1,6 +1,6 @@
 module Asendia
   class PurchaseItem
-    include Virtus.model
+    include ::Virtus.model
 
     attribute :created_by,            String
     attribute :created_on,            DateTime

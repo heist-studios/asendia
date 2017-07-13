@@ -3,7 +3,7 @@ module Asendia
   # still called orders in Asendia, they have a different set of attributes
   # for tracking.
   class Shipment
-    include Virtus.model
+    include ::Virtus.model
 
     attribute :id,              Integer
     attribute :delivery_method, String
