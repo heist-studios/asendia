@@ -1,7 +1,7 @@
 module Asendia
   # Products are used for accessing stock levels.
   class Product
-    include ::Virtus.model
+    include Virtus.model
 
     attribute :code,           String
     attribute :description,    String

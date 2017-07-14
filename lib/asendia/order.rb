@@ -1,6 +1,8 @@
+require 'nokogiri'
+
 module Asendia
   class Order
-    include ::Virtus.model
+    include Virtus.model
 
     attribute :created_by,            String
     attribute :created_on,            DateTime
@@ -42,15 +44,6 @@ module Asendia
     attribute :delivery_country,      String
     attribute :delivery_message,      String
 
-    # Billing address
-    attribute :billing_address,       String
-    attribute :billing_address2,      String
-    attribute :billing_address3,      String
-    attribute :billing_town,          String
-    attribute :billing_county,        String
-    attribute :billing_postcode,      String
-    attribute :billing_country,       String
-
     # Shipping
     attribute :ship_method,           String
 
@@ -62,7 +55,18 @@ module Asendia
     end
 
     def to_xml
-      '<xml></xml>'
+      Nokogiri::XML::Builder.new do |xml|
+        xml.ArrayOfPurchaseOrder do
+          xml.PurchaseOrder do
+            xml.CreatedBy created_by
+            xml.PurchaseItems do
+              purchase_items.each do |item|
+                xml.PurchaseItem { item.to_xml(xml) }
+              end
+            end
+          end
+        end
+      end.to_xml
     end
   end
 end
