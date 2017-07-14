@@ -24,6 +24,7 @@ GEM
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
     builder (3.2.3)
+    byebug (8.2.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.0.2)
@@ -98,6 +99,7 @@ PLATFORMS
 
 DEPENDENCIES
   asendia!
+  byebug
   rspec
   simplecov
 
