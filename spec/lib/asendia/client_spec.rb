@@ -2,27 +2,30 @@ require 'spec_helper'
 require './lib/asendia'
 
 RSpec.describe Asendia::Client do
-  describe '#get_order' do
-    it 'returns a shipment' do
+  describe '#get_orders' do
+    it 'returns shipment' do
       asendia = Asendia::Client.new(
         username: 'foo',
         password: 'bar',
         live:     false
       )
 
-      puts asendia.get_order(123).inspect
+      output = asendia.get_orders([123])
+      expect(output).to be_kind_of(Array)
+      expect(output.first).to be_kind_of(Asendia::Shipment)
     end
   end
 
-  describe '#get_product' do
+  describe '#get_products' do
     it 'returns array of products' do
       asendia = Asendia::Client.new(
         username: 'foo',
         password: 'bar',
         live:     false
       )
-
-      asendia.get_product(123)
+      output = asendia.get_products([123])
+      expect(output).to be_kind_of(Array)
+      expect(output.first).to be_kind_of(Asendia::Product)
     end
   end
 end

@@ -10,17 +10,10 @@ module Asendia
     attribute :reserved_stock, Integer
 
     def self.fetch(client, product_ids)
-      response = client.call(
+      client.request(
         :get_stock_update,
-        message: {
-          ProductIDList: product_ids.join(',')
-        }
-      ).body
-
-      response = response[:get_stock_update_response][:get_stock_update_return]
-      response[:recordset][:record].map do |record|
-        Product.new_from_api(record)
-      end
+        ProductIDList: product_ids.join(',')
+      ).map { |record| Product.new_from_api(record) }
     end
 
     def self.new_from_api(record)

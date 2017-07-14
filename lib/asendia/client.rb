@@ -1,4 +1,6 @@
 require 'savon'
+require 'backport_dig'
+require 'byebug'
 
 module Asendia
   # Handles communication with Asendia API
@@ -13,19 +15,28 @@ module Asendia
     end
 
     def get_order(order_id)
-      get_orders([order_id])
+      get_orders([order_id]).first
     end
 
     def get_orders(order_ids)
-      Shipment.fetch(@client, order_ids)
+      Shipment.fetch(self, order_ids)
     end
 
     def get_product(product_id)
-      get_products([product_id])
+      get_products([product_id]).first
     end
 
     def get_products(product_ids)
-      Product.fetch(@client, product_ids)
+      Product.fetch(self, product_ids)
+    end
+
+    def request(endpoint, params)
+      @client.call(endpoint, message: params).body.dig(
+        "#{endpoint}_response".to_sym,
+        "#{endpoint}_return".to_sym,
+        :recordset,
+        :record
+      )
     end
   end
 end

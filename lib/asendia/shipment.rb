@@ -13,17 +13,10 @@ module Asendia
     attribute :tracking_number, String
 
     def self.fetch(client, order_ids)
-      response = client.call(
+      client.request(
         :get_order,
-        message: {
-          OrderIDList: order_ids.join(',')
-        }
-      ).body
-
-      response = response[:get_order_response][:get_order_return]
-      response[:recordset][:record].map do |record|
-        Shipment.new_from_api(record)
-      end
+        OrderIDList: order_ids.join(',')
+      ).map { |record| Shipment.new_from_api(record) }
     end
 
     def self.new_from_api(record)

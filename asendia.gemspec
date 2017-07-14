@@ -17,4 +17,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'money',        '~> 6.7.0'
   spec.add_runtime_dependency 'nokogiri',     '~> 1.6.0'
   spec.add_runtime_dependency 'factory_girl', '~> 4.7.0'
+  spec.add_runtime_dependency 'backport_dig', '~> 1.0.0'
 end
