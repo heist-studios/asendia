@@ -36,7 +36,7 @@ FactoryGirl.define do
     delivery_town         { FFaker::AddressUK.city }
     delivery_county       { FFaker::AddressUK.county }
     delivery_postcode     { FFaker::AddressUK.postcode }
-    delivery_country      { FFaker::AddressUK.country }
+    delivery_country      'GB'
     delivery_message      ''
 
     # Shipping
