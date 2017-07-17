@@ -7,6 +7,8 @@ module Asendia
   class Client
     WSDL_URL = 'https://demo0884331.mockable.io/?wsdl'.freeze
 
+    attr_reader :username, :password, :live
+
     def initialize(username:, password:, live: false)
       @username = username
       @password = password
@@ -37,6 +39,9 @@ module Asendia
         :recordset,
         :record
       )
+    end
+
+    def post
     end
   end
 end

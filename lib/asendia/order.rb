@@ -6,17 +6,20 @@ module Asendia
   class Order
     include Virtus.model
 
+    API_URL = 'https://data­rfc.asendia.co.uk/[ClientNameInAccountSetup]/externalcom/AddXMLOrder.cfm?Clien
+tSys=[ClientNameInAccountSetup]'.freeze
+
     attribute :created_by,            String
     attribute :created_on,            DateTime
     attribute :amended_by,            String
     attribute :amended_on,            DateTime
-    attribute :campaign,              String
 
     # Authentication
     attribute :user_id,               String
     attribute :password,              String
-
     attribute :contact_number,        String
+
+    attribute :order_id,              Integer
     attribute :title,                 String
     attribute :forename,              String
     attribute :surname,               String
@@ -24,11 +27,6 @@ module Asendia
     attribute :email,                 String
     attribute :phone,                 String
     attribute :currency,              String
-    attribute :current_state,         String
-    attribute :purchase_order_number, Integer
-    attribute :is_gift,               Boolean
-    attribute :tax_amount,            Money
-    attribute :delivery_amount,       Money
     attribute :total_amount,          Money
     attribute :is_test,               Boolean
 
@@ -52,7 +50,11 @@ module Asendia
     # Line items
     attribute :purchase_items,        Array[PurchaseItem]
 
-    def save
+    def save(client)
+      self.is_test = !client.live
+      self.username = client.username
+      self.password = client.password
+
       puts to_xml.inspect
     end
 
@@ -60,7 +62,48 @@ module Asendia
       Nokogiri::XML::Builder.new do |xml|
         xml.ArrayOfPurchaseOrder do
           xml.PurchaseOrder do
-            xml.CreatedBy created_by
+            xml.CreatedBy           created_by
+            xml.CreatedOn           created_on
+            xml.AmendedBy           amended_by
+            xml.AmendedOn           amended_on
+            xml.Campaign            'ImportOrder'
+
+            xml.UserId              username
+            xml.Password            password
+            xml.ContactNumber       contact_number
+
+            xml.Title               title
+            xml.Forename            forename
+            xml.Surname             surname
+            xml.Company             company
+            xml.Email               email
+            xml.Phone               phone
+            xml.Currency            currency
+
+            xml.CurrentState        'Confirmed'
+            xml.PurchaseOrderNumber order_id
+
+            xml.TaxAmount           0.0
+            xml.DeliveryAmount      0.0
+            xml.TotalAmount         total_amount
+
+            xml.IsTest              is_test
+
+            xml.DeliveryTitle       delivery_title
+            xml.DeliveryForename    delivery_forename
+            xml.DeliverySurname     delivery_surname
+            xml.DeliveryCompany     delivery_company
+            xml.DeliveryAddress     delivery_address
+            xml.DeliveryAddress2    delivery_address2
+            xml.DeliveryAddress3    delivery_address3
+            xml.DeliveryTown        delivery_town
+            xml.DeliveryCounty      delivery_county
+            xml.DeliveryPostcode    delivery_postcode
+            xml.DeliveryCountry     delivery_country
+            xml.DeliveryMessage     delivery_message
+
+            xml.ShipMethod          ship_method
+
             xml.PurchaseItems do
               purchase_items.each do |item|
                 xml.PurchaseItem { item.to_xml(xml) }
