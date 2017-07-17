@@ -1,6 +1,9 @@
+$LOAD_PATH.push File.expand_path('../lib', __FILE__)
+require 'asendia/version'
+
 Gem::Specification.new do |spec|
   spec.name        = 'asendia'
-  spec.version     = '0.0.1'
+  spec.version     = Asendia::VERSION
   spec.date        = '2017-07-13'
   spec.summary     = 'Asendia API client'
   spec.authors     = ['James McCarthy', 'Tim Davies']

@@ -1,3 +1,4 @@
+require 'asendia/version'
 require 'asendia/client'
 require 'asendia/shipment'
 require 'asendia/purchase_item'
