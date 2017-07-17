@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'httparty'
 require './lib/asendia'
 
 RSpec.describe Asendia::Order do
@@ -24,6 +25,26 @@ RSpec.describe Asendia::Order do
     it 'should set empty currency fields to 0.0 rather than nil' do
       expect(subject).to include '<TaxAmount>0.0</TaxAmount>'
       expect(subject).to include '<DeliveryAmount>0.0</DeliveryAmount>'
+    end
+  end
+
+  describe '#save' do
+    subject { build(:asendia_order) }
+
+    it 'should make request to Asendia API' do
+      expect(HTTParty).to(
+        receive(:post).with(
+          a_kind_of(String), a_kind_of(String)
+        ).and_return(nil)
+      )
+
+      client = Asendia::Client.new(
+        username: 'foo',
+        password: 'bar',
+        live:     false
+      )
+
+      subject.save(client)
     end
   end
 end
