@@ -15,7 +15,7 @@ tSys=[ClientNameInAccountSetup]'.freeze
     attribute :amended_on,            DateTime
 
     # Authentication
-    attribute :user_id,               String
+    attribute :username,              String
     attribute :password,              String
     attribute :contact_number,        String
 
