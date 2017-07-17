@@ -6,8 +6,8 @@ module Asendia
   class Order
     include Virtus.model
 
-    API_URL = 'https://data­rfc.asendia.co.uk/[ClientNameInAccountSetup]/externalcom/AddXMLOrder.cfm?Clien
-tSys=[ClientNameInAccountSetup]'.freeze
+    API_URL = 'https://data­rfc.asendia.co.uk/[USERNAME]/externalcom/' +
+              'AddXMLOrder.cfm?ClientSys=[USERNAME]'.freeze
 
     attribute :created_by,            String
     attribute :created_on,            DateTime
@@ -55,7 +55,7 @@ tSys=[ClientNameInAccountSetup]'.freeze
       self.username = client.username
       self.password = client.password
 
-      puts to_xml.inspect
+      HTTParty.post(API_URL.gsub('[USERNAME]', client.username), to_xml)
     end
 
     def to_xml
