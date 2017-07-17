@@ -18,4 +18,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'nokogiri',     '~> 1.6.0'
   spec.add_runtime_dependency 'factory_girl', '~> 4.7.0'
   spec.add_runtime_dependency 'backport_dig', '~> 1.0.0'
+  spec.add_runtime_dependency 'ffaker',       '~> 2.2.0'
 end

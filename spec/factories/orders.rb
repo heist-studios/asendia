@@ -1,46 +1,42 @@
 require 'factory_girl'
 require 'money'
+require 'ffaker'
 
 FactoryGirl.define do
   factory :asendia_order, class: 'Asendia::Order' do
-    created_by            'Foo Bar'
+    created_by            'AcmeCompany'
     created_on            Date.today
-    amended_by            'Foo Bar'
+    amended_by            'AcmeCompany'
     amended_on            Date.today
-    campaign              'Foo'
 
     # Authentication
     user_id               'username'
     password              'password'
     contact_number        '123'
 
-    title                 'Mr'
-    forename              'Joe'
-    surname               'Bloggs'
+    order_id              1
+    title                 FFaker::Name.female_prefix
+    forename              FFaker::Name.first_name_female
+    surname               FFaker::Name.last_name
     company               ''
-    email                 'foo@foo.com'
-    phone                 '01234567890'
+    email                 FFaker::Internet.email
+    phone                 FFaker::PhoneNumber.phone_number
     currency              'GBP'
-    current_state         'Confirmed'
-    purchase_order_number 1
-    is_gift               false
-    tax_amount            { Money.new(0) }
-    delivery_amount       { Money.new(0) }
-    total_amount          { Money.new(2000) }
+    total_amount          { Money.new(rand(20..150) * 100) }
     is_test               true
 
     # Delivery address
-    delivery_title        'Mr'
-    delivery_forename     'Joe'
-    delivery_surname      'Bloggs'
+    delivery_title        FFaker::Name.female_prefix
+    delivery_forename     FFaker::Name.first_name_female
+    delivery_surname      FFaker::Name.last_name
     delivery_company      ''
-    delivery_address      '123 Some Road'
-    delivery_address2     ''
+    delivery_address      FFaker::AddressUK.secondary_address
+    delivery_address2     FFaker::AddressUK.street_address
     delivery_address3     ''
-    delivery_town         'Some Town'
-    delivery_county       'Some County'
-    delivery_postcode     'A1 2BC'
-    delivery_country      'United Kingdom'
+    delivery_town         FFaker::AddressUK.city
+    delivery_county       FFaker::AddressUK.county
+    delivery_postcode     FFaker::AddressUK.postcode
+    delivery_country      FFaker::AddressUK.country
     delivery_message      ''
 
     # Shipping
