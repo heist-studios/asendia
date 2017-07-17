@@ -15,6 +15,7 @@ Gem::Specification.new do |spec|
   ]
 
   # Runtime dependencies:
+  spec.add_runtime_dependency 'httparty'
   spec.add_runtime_dependency 'savon',        '~> 2.11.0'
   spec.add_runtime_dependency 'virtus',       '~> 1.0.5'
   spec.add_runtime_dependency 'money',        '~> 6.7.0'
