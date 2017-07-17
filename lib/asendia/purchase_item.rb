@@ -1,3 +1,6 @@
+require 'virtus'
+require 'money'
+
 module Asendia
   class PurchaseItem
     include Virtus.model

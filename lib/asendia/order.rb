@@ -1,3 +1,5 @@
+require 'virtus'
+require 'money'
 require 'nokogiri'
 
 module Asendia

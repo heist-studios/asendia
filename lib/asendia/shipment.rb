@@ -1,3 +1,5 @@
+require 'virtus'
+
 module Asendia
   # Shipments are orders that have been accepted and can now be tracked. Whilst
   # still called orders in Asendia, they have a different set of attributes

@@ -1,3 +1,6 @@
+require 'factory_girl'
+require 'money'
+
 FactoryGirl.define do
   factory :asendia_order, class: 'Asendia::Order' do
     created_by            'Foo Bar'

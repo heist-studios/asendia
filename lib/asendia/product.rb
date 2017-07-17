@@ -1,3 +1,5 @@
+require 'virtus'
+
 module Asendia
   # Products are used for accessing stock levels.
   class Product
