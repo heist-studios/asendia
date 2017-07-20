@@ -5,7 +5,7 @@ require 'byebug'
 module Asendia
   # Handles communication with Asendia API
   class Client
-    WSDL_URL = 'https://demo0884331.mockable.io/?wsdl'.freeze
+    WSDL_URL = 'https://reporting-rfc.asendia.co.uk/Heist/externalCom/webservice.cfc?wsdl'.freeze
 
     attr_reader :username, :password, :live
 
@@ -33,6 +33,9 @@ module Asendia
     end
 
     def request(endpoint, params)
+      # ReturnType 1 is XML, i.e. we want XML to be returned.
+      params[:ReturnType] = 1
+
       @client.call(endpoint, message: params).body.dig(
         "#{endpoint}_response".to_sym,
         "#{endpoint}_return".to_sym,
