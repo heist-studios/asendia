@@ -35,6 +35,8 @@ module Asendia
     def request(endpoint, params)
       # ReturnType 1 is XML, i.e. we want XML to be returned.
       params[:ReturnType] = 1
+      params[:username] = @username
+      params[:password] = @password
 
       @client.call(endpoint, message: params).body.dig(
         "#{endpoint}_response".to_sym,
