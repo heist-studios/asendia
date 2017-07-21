@@ -6,7 +6,7 @@ module Asendia
   class Order
     include Virtus.model
 
-    API_URL = 'https://data­rfc.asendia.co.uk/[USERNAME]/externalcom/' +
+    API_URL = 'https://data-rfc.asendia.co.uk/[USERNAME]/externalcom/' +
               'AddXMLOrder.cfm?ClientSys=[USERNAME]'.freeze
 
     attribute :created_by,            String
@@ -23,7 +23,6 @@ module Asendia
     attribute :title,                 String
     attribute :forename,              String
     attribute :surname,               String
-    attribute :company,               String
     attribute :email,                 String
     attribute :phone,                 String
     attribute :currency,              String
@@ -34,7 +33,6 @@ module Asendia
     attribute :delivery_title,        String
     attribute :delivery_forename,     String
     attribute :delivery_surname,      String
-    attribute :delivery_company,      String
     attribute :delivery_address,      String
     attribute :delivery_address2,     String
     attribute :delivery_address3,     String
@@ -55,7 +53,7 @@ module Asendia
       self.username = client.username
       self.password = client.password
 
-      HTTParty.post(API_URL.gsub('[USERNAME]', client.username), to_xml)
+      HTTParty.post(API_URL.gsub('[USERNAME]', client.username), body: to_xml)
     end
 
     def to_xml
@@ -75,7 +73,7 @@ module Asendia
             xml.Title               title
             xml.Forename            forename
             xml.Surname             surname
-            xml.Company             company
+            xml.Company             ''
             xml.Email               email
             xml.Phone               phone
             xml.Currency            currency
@@ -92,7 +90,7 @@ module Asendia
             xml.DeliveryTitle       delivery_title
             xml.DeliveryForename    delivery_forename
             xml.DeliverySurname     delivery_surname
-            xml.DeliveryCompany     delivery_company
+            xml.DeliveryCompany     ''
             xml.DeliveryAddress     delivery_address
             xml.DeliveryAddress2    delivery_address2
             xml.DeliveryAddress3    delivery_address3
@@ -100,7 +98,7 @@ module Asendia
             xml.DeliveryCounty      delivery_county
             xml.DeliveryPostcode    delivery_postcode
             xml.DeliveryCountry     delivery_country
-            xml.DeliveryMessage     delivery_message
+            xml.DeliveryMessage     delivery_message || ''
 
             xml.ShipMethod          ship_method
 

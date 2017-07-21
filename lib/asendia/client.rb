@@ -45,8 +45,5 @@ module Asendia
         :record
       )
     end
-
-    def post
-    end
   end
 end
