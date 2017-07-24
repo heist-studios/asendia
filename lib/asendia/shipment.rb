@@ -15,18 +15,26 @@ module Asendia
     attribute :tracking_number, String
 
     def self.fetch(client, order_ids)
-      client.request(
+      response = client.request(
         :get_order,
         OrderIDList: order_ids.join(',')
-      ).map { |record| Shipment.new_from_api(record) }
+      )
+
+      response = [response] unless response.is_a?(Array)
+      response.map { |record| Shipment.new_from_api(record) }
     end
 
     def self.new_from_api(record)
+      dispatch_date = nil
+      if record[:despatcheddate].present?
+        dispatch_date = Date.parse(record[:despatcheddate])
+      end
+
       Shipment.new(
         id:              record[:orderid],
         delivery_method: record[:deliverymethod],
         dispatched:      record[:despatched] == 'Yes',
-        dispatched_on:   Date.parse(record[:despatcheddate]),
+        dispatched_on:   dispatch_date,
         picking_status:  record[:pickingstatus].downcase,
         tracking_number: record[:trackno]
       )
