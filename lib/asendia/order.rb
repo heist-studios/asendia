@@ -100,6 +100,14 @@ module Asendia
             xml.DeliveryCountry     delivery_country
             xml.DeliveryMessage     delivery_message || ''
 
+            xml.BillingAddress      delivery_address
+            xml.BillingAddress2     delivery_address2
+            xml.BillingAddress3     delivery_address3
+            xml.BillingTown         delivery_town
+            xml.BillingCounty       delivery_county
+            xml.BillingPostcode     delivery_postcode
+            xml.BillingCountry      delivery_country
+
             xml.ShipMethod          ship_method
 
             xml.PurchaseItems do
