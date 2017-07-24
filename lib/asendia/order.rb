@@ -53,7 +53,11 @@ module Asendia
       self.username = client.username
       self.password = client.password
 
-      HTTParty.post(API_URL.gsub('[USERNAME]', client.username), body: to_xml)
+      body = {
+        OrderXML: to_xml,
+        ClientUrl: client.client_name
+      }
+      HTTParty.post(API_URL.gsub('[USERNAME]', client.client_name), body: body)
     end
 
     def to_xml
@@ -85,7 +89,7 @@ module Asendia
             xml.DeliveryAmount      0.0
             xml.TotalAmount         total_amount
 
-            xml.IsTest              is_test
+            xml.IsTest              is_test ? 1 : 0
 
             xml.DeliveryTitle       delivery_title
             xml.DeliveryForename    delivery_forename

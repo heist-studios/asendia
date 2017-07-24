@@ -7,13 +7,14 @@ module Asendia
   class Client
     WSDL_URL = 'https://reporting-rfc.asendia.co.uk/Heist/externalCom/webservice.cfc?wsdl'.freeze
 
-    attr_reader :username, :password, :live
+    attr_reader :username, :password, :client_name, :live
 
-    def initialize(username:, password:, live: false)
-      @username = username
-      @password = password
-      @live     = live
-      @client   = Savon.client(wsdl: WSDL_URL)
+    def initialize(username:, password:, client_name:, live: false)
+      @username    = username
+      @password    = password
+      @client_name = client_name
+      @live        = live
+      @client      = Savon.client(wsdl: WSDL_URL)
     end
 
     def get_order(order_id)

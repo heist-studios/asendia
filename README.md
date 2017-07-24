@@ -8,9 +8,10 @@ Create an Asendia::Client object with your username and password:
 
 ```
   client = Asendia::Client.new(
-    username: 'foo',
-    password: 'bar',
-    live:     Rails.env.production?
+    username:    'foo',
+    password:    'bar',
+    client_name: 'baz'
+    live:        Rails.env.production?
   )
 ```
 
