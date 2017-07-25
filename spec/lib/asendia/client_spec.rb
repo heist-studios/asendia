@@ -11,7 +11,7 @@ RSpec.describe Asendia::Client do
         live:        false
       )
 
-      output = asendia.get_order(123)
+      output = asendia.get_order(1_495_407)
       expect(output).to be_kind_of(Asendia::Shipment)
     end
   end
@@ -24,7 +24,7 @@ RSpec.describe Asendia::Client do
         client_name: ENV.fetch('ASENDIA_CLIENT_NAME'),
         live:        false
       )
-      output = asendia.get_product(123)
+      output = asendia.get_product(1_102_010_101)
       expect(output).to be_kind_of(Asendia::Product)
     end
   end

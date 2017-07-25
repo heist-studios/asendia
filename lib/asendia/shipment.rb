@@ -26,7 +26,8 @@ module Asendia
 
     def self.new_from_api(record)
       dispatch_date = nil
-      if record[:despatcheddate].present?
+
+      if record[:despatcheddate]
         dispatch_date = Date.parse(record[:despatcheddate])
       end
 
