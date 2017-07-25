@@ -34,14 +34,15 @@ RSpec.describe Asendia::Order do
     it 'should make request to Asendia API' do
       expect(HTTParty).to(
         receive(:post).with(
-          a_kind_of(String), a_kind_of(String)
+          a_kind_of(String), { body: a_kind_of(Hash) }
         ).and_return(nil)
       )
 
       client = Asendia::Client.new(
-        username: 'foo',
-        password: 'bar',
-        live:     false
+        username:    ENV.fetch('ASENDIA_USERNAME'),
+        password:    ENV.fetch('ASENDIA_PASSWORD'),
+        client_name: ENV.fetch('ASENDIA_CLIENT_NAME'),
+        live:        false
       )
 
       subject.save(client)
