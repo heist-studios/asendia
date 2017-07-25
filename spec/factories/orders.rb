@@ -18,7 +18,6 @@ FactoryGirl.define do
     title                 { FFaker::Name.female_prefix }
     forename              { FFaker::Name.first_name_female }
     surname               { FFaker::Name.last_name }
-    company               ''
     email                 { FFaker::Internet.email }
     phone                 { FFaker::PhoneNumber.phone_number }
     currency              'GBP'
@@ -29,7 +28,6 @@ FactoryGirl.define do
     delivery_title        { FFaker::Name.female_prefix }
     delivery_forename     { FFaker::Name.first_name_female }
     delivery_surname      { FFaker::Name.last_name }
-    delivery_company      ''
     delivery_address      { FFaker::AddressUK.secondary_address }
     delivery_address2     { FFaker::AddressUK.street_address }
     delivery_address3     ''

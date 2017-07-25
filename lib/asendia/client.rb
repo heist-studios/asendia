@@ -1,6 +1,5 @@
 require 'savon'
 require 'backport_dig'
-require 'byebug'
 
 module Asendia
   # Handles communication with Asendia API
