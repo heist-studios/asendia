@@ -1,6 +1,6 @@
 # Asendia
 
-Ruby API wrapper for Asendia SOAP API
+Ruby API wrapper for the Asendia SOAP API, version 1.5.
 
 ## Getting Started
 
