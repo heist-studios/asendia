@@ -1,5 +1,8 @@
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  track_files 'lib/**/*.rb'
+  add_filter 'spec/'
+end
 
 require 'dotenv'
 Dotenv.load
