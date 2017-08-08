@@ -2,6 +2,7 @@ require 'virtus'
 require 'money'
 
 module Asendia
+  # Asendia equivalent of a line item
   class PurchaseItem
     include Virtus.model
 

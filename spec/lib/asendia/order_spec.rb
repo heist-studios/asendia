@@ -34,7 +34,7 @@ RSpec.describe Asendia::Order do
     it 'should make request to Asendia API' do
       expect(HTTParty).to(
         receive(:post).with(
-          a_kind_of(String), { body: a_kind_of(Hash) }
+          a_kind_of(String), body: a_kind_of(Hash)
         ).and_return(nil)
       )
 
