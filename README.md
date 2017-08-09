@@ -1,9 +1,9 @@
-# Asendia
+# Asendia UK / Europe
 
 Ruby API wrapper for the Asendia SOAP API, version 1.5.
 
 For more information on the API itself,
-[check out the official documentation](https://data-rfc.asendia.co.uk/_common/toolkit/IntegratingWithBTBIS.pdf)
+[check out the official documentation](/docs/api-v1.5.pdf)
 
 ## Installation
 
@@ -99,7 +99,7 @@ You need to pass in a lot of data in order to create an order.
     delivery_town:     'Some City',
     delivery_county:   'Some Region',
     delivery_postcode: 'A1 2BC',
-    delivery_country:  'GB',
+    delivery_country:  'GB', # ISO ALPHA-2 Country Code
     ship_method:       'DPD_24' # You'll need to speak with your Asendia
                                 # account manager to get the options for this.
   )
