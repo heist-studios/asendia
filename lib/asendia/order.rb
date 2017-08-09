@@ -3,6 +3,8 @@ require 'money'
 require 'nokogiri'
 
 module Asendia
+  # An individual order. Contains a collection of PurchaseItems, as well as
+  # authentication details, address information, etc.
   class Order
     include Virtus.model
 

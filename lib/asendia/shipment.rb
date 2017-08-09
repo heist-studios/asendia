@@ -25,11 +25,8 @@ module Asendia
     end
 
     def self.new_from_api(record)
-      dispatch_date = nil
-
-      if record[:despatcheddate]
-        dispatch_date = Date.parse(record[:despatcheddate])
-      end
+      dispatch_date = record[:despatcheddate]
+      dispatch_date = Date.parse(dispatch_date) unless dispatch_date.nil?
 
       Shipment.new(
         id:              record[:orderid],
