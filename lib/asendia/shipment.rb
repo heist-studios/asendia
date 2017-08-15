@@ -13,6 +13,7 @@ module Asendia
     attribute :dispatched_on,   Date
     attribute :picking_status,  String
     attribute :tracking_number, String
+    attribute :tracking_url,    String
 
     def self.fetch(client, order_ids)
       response = client.request(
@@ -34,7 +35,8 @@ module Asendia
         dispatched:      record[:despatched] == 'Yes',
         dispatched_on:   dispatch_date,
         picking_status:  record[:pickingstatus].downcase,
-        tracking_number: record[:trackno]
+        tracking_number: record[:trackno],
+        tracking_url:    record[:tracknolink]
       )
     end
   end

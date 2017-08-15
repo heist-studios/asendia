@@ -54,6 +54,8 @@ different.
                                  # awaiting dispatch.
   puts shipment.tracking_number  # Tracking code if you used a courier that
                                  # supports tracking.
+  puts shipment.tracking_url     # Courier tracking URL (will not necessarily
+                                 # be set up on your account).
 ```
 
 ### Fetching stock information
