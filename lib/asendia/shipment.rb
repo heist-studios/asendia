@@ -36,8 +36,13 @@ module Asendia
         dispatched_on:   dispatch_date,
         picking_status:  record[:pickingstatus].downcase,
         tracking_number: record[:trackno],
-        tracking_url:    record[:tracknolink]
+        tracking_url:    parse_tracking_link(record[:tracknolink])
       )
+    end
+
+    def self.parse_tracking_link(link)
+      return nil if link.blank?
+      Nokogiri::XML.parse("<xml>#{link}</xml>").content
     end
   end
 end
