@@ -15,6 +15,18 @@ module Asendia
     attribute :tracking_number, String
     attribute :tracking_url,    String
 
+    def dispatched?
+      if dispatched && dispatched_on.nil?
+        STDERR.puts "DESPATCHED set without DESPATCHEDDATE (shipment ID: #{id})"
+      end
+
+      if dispatched_on && !dispatched
+        STDERR.puts "DESPATCHEDDATE set without DESPATCHED (shipment ID: #{id})"
+      end
+
+      dispatched && !!dispatched_on
+    end
+
     def self.fetch(client, order_ids)
       response = client.request(
         :get_order,
