@@ -42,7 +42,10 @@ module Asendia
         id:              record[:orderid],
         delivery_method: record[:deliverymethod],
         dispatched:      record[:despatched] == 'Yes',
+
+        # DespatchedDate is set to nil by Savon if not present:
         dispatched_on:   record[:despatcheddate],
+
         picking_status:  record[:pickingstatus].downcase,
         tracking_number: record[:trackno],
         tracking_url:    parse_tracking_link(record[:tracknolink])
