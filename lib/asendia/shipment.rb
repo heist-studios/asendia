@@ -38,14 +38,11 @@ module Asendia
     end
 
     def self.new_from_api(record)
-      dispatch_date = record[:despatcheddate]
-      dispatch_date = Date.parse(dispatch_date) unless dispatch_date.nil?
-
       Shipment.new(
         id:              record[:orderid],
         delivery_method: record[:deliverymethod],
         dispatched:      record[:despatched] == 'Yes',
-        dispatched_on:   dispatch_date,
+        dispatched_on:   record[:despatcheddate],
         picking_status:  record[:pickingstatus].downcase,
         tracking_number: record[:trackno],
         tracking_url:    parse_tracking_link(record[:tracknolink])
