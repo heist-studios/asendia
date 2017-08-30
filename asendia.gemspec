@@ -16,11 +16,11 @@ Gem::Specification.new do |spec|
 
   # Runtime dependencies:
   spec.add_runtime_dependency 'httparty'
+  spec.add_runtime_dependency 'json',         '~> 1.8.5'
   spec.add_runtime_dependency 'savon',        '~> 2.11.0'
   spec.add_runtime_dependency 'virtus',       '~> 1.0.5'
   spec.add_runtime_dependency 'money',        '~> 6.7.0'
   spec.add_runtime_dependency 'nokogiri',     '~> 1.6.0'
   spec.add_runtime_dependency 'factory_girl', '~> 4.7.0'
-  spec.add_runtime_dependency 'backport_dig', '~> 1.0.0'
   spec.add_runtime_dependency 'ffaker',       '~> 2.6.0'
 end
