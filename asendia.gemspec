@@ -19,8 +19,8 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'json',         '~> 1.8.5'
   spec.add_runtime_dependency 'savon',        '~> 2.11.0'
   spec.add_runtime_dependency 'virtus',       '~> 1.0.5'
-  spec.add_runtime_dependency 'money',        '~> 6.7.0'
-  spec.add_runtime_dependency 'nokogiri',     '~> 1.6.0'
+  spec.add_runtime_dependency 'money',        '~> 6.7'
+  spec.add_runtime_dependency 'nokogiri',     '~> 1.8'
   spec.add_runtime_dependency 'factory_girl', '~> 4.7.0'
   spec.add_runtime_dependency 'ffaker',       '~> 2.6.0'
 end
