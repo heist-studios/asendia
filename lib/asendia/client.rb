@@ -7,12 +7,12 @@ module Asendia
 
     attr_reader :username, :password, :client_name, :live
 
-    def initialize(username:, password:, client_name:, live: false)
+    def initialize(username:, password:, client_name:, live: false, log: false)
       @username    = username
       @password    = password
       @client_name = client_name
       @live        = live
-      @client      = Savon.client(wsdl: WSDL_URL)
+      @client      = Savon.client(wsdl: WSDL_URL, log: log)
     end
 
     def get_order(order_id)
